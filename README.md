@@ -24,9 +24,22 @@ Esse repositório contém uma versão do *Sistema Bancário* com:
 
 ---
 
-## 🚀 Como executar (local)
-1. Clone o repositório:
-```bash
-git clone https://github.com/seu-usuario/sistema-bancario-python.git
-cd sistema-bancario-python
+### 🔧 O que eu modifiquei / adicionei
+Este projeto não é apenas uma cópia — é uma evolução do desafio da DIO. As principais melhorias implementadas foram:
+
+* **Estrutura modular em funções** (depositar, sacar, exibir_extrato);
+* **Validação robusta de entrada** (tratamento com `try/except` para evitar que entradas inválidas quebrem o programa);
+* **Mensagens de confirmação** ao final de cada ação (ex.: ✅ Depósito de R$ 100.00 realizado com sucesso!);
+* **Organização do código** para facilitar futuras melhorias (POO, múltiplas contas, persistência de dados).
+
+---
+
+### 🤝 Créditos
+Este projeto foi inspirado no desafio **"Criando um Sistema Bancário com Python"** da Digital Innovation One (DIO).
+
+O código aqui apresentado foi adaptado e aprimorado por **Lucas Eduardo Barreto de Oliveira**, com melhorias em:
+
+* **Estrutura modular** (funções);
+* **Mensagens claras de feedback** ao usuário;
+* **Validações adicionais** de entrada e limites.
 
