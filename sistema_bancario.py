@@ -1,7 +1,9 @@
 # ==============================
-# Sistema Bancário - Versão Melhorada
+# Sistema Bancário - Versão Melhorada com Data e Hora
 # Autor: Lucas Eduardo Barreto de Oliveira
 # ==============================
+
+from datetime import datetime
 
 MENU = """
 [d] Depositar
@@ -14,22 +16,28 @@ MENU = """
 # Configurações
 LIMITE = 500
 LIMITE_SAQUES = 3
+LIMITE_TRANSACOES_DIARIAS = 10
 
 
 # ------------------------------
 # Funções
 # ------------------------------
-def depositar(saldo, extrato, valor):
+def registrar_transacao(transacoes, tipo, valor):
+    agora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    transacoes.append(f"{tipo}: R$ {valor:.2f} | {agora}")
+
+
+def depositar(saldo, transacoes, valor):
     if valor > 0:
         saldo += valor
-        extrato += f"Depósito: R$ {valor:.2f}\n"
+        registrar_transacao(transacoes, "Depósito", valor)
         print(f"✅ Depósito de R$ {valor:.2f} realizado com sucesso!")
     else:
         print("❌ Operação falhou! O valor informado é inválido.")
-    return saldo, extrato
+    return saldo
 
 
-def sacar(saldo, extrato, valor, limite, numero_saques, limite_saques):
+def sacar(saldo, transacoes, valor, limite, numero_saques, limite_saques):
     excedeu_saldo = valor > saldo
     excedeu_limite = valor > limite
     excedeu_saques = numero_saques >= limite_saques
@@ -42,18 +50,22 @@ def sacar(saldo, extrato, valor, limite, numero_saques, limite_saques):
         print("❌ Operação falhou! Número máximo de saques excedido.")
     elif valor > 0:
         saldo -= valor
-        extrato += f"Saque: R$ {valor:.2f}\n"
         numero_saques += 1
+        registrar_transacao(transacoes, "Saque", valor)
         print(f"✅ Saque de R$ {valor:.2f} realizado com sucesso!")
     else:
         print("❌ Operação falhou! O valor informado é inválido.")
 
-    return saldo, extrato, numero_saques
+    return saldo, numero_saques
 
 
-def exibir_extrato(saldo, extrato):
+def exibir_extrato(saldo, transacoes):
     print("\n================ EXTRATO ================")
-    print("Não foram realizadas movimentações." if not extrato else extrato)
+    if not transacoes:
+        print("Não foram realizadas movimentações.")
+    else:
+        for t in transacoes:
+            print(t)
     print(f"\nSaldo: R$ {saldo:.2f}")
     print("==========================================")
     print("📄 Extrato exibido com sucesso!")
@@ -64,10 +76,14 @@ def exibir_extrato(saldo, extrato):
 # ------------------------------
 def main():
     saldo = 0
-    extrato = ""
+    transacoes = []
     numero_saques = 0
 
     while True:
+        if len(transacoes) >= LIMITE_TRANSACOES_DIARIAS:
+            print("⚠️ Limite diário de 10 transações atingido! Tente novamente amanhã.")
+            break
+
         opcao = input(MENU)
 
         if opcao == "d":
@@ -76,7 +92,7 @@ def main():
             except ValueError:
                 print("❌ Entrada inválida. Digite um número.")
                 continue
-            saldo, extrato = depositar(saldo, extrato, valor)
+            saldo = depositar(saldo, transacoes, valor)
 
         elif opcao == "s":
             try:
@@ -84,12 +100,12 @@ def main():
             except ValueError:
                 print("❌ Entrada inválida. Digite um número.")
                 continue
-            saldo, extrato, numero_saques = sacar(
-                saldo, extrato, valor, LIMITE, numero_saques, LIMITE_SAQUES
+            saldo, numero_saques = sacar(
+                saldo, transacoes, valor, LIMITE, numero_saques, LIMITE_SAQUES
             )
 
         elif opcao == "e":
-            exibir_extrato(saldo, extrato)
+            exibir_extrato(saldo, transacoes)
 
         elif opcao == "q":
             print("👋 Saindo do sistema bancário. Obrigado por utilizar nossos serviços!")
@@ -101,3 +117,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
