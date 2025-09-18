@@ -13,9 +13,11 @@ Esse repositório contém uma versão do *Sistema Bancário* com:
 ---
 
 ## ▶️ Funcionalidades
-- Depositar valores
-- Sacar valores (com verificação de saldo, limite por saque e limite diário de saques)
-- Exibir extrato (histórico de movimentações)
+- **Depositar valores**
+- **Sacar valores** (com verificação de saldo, limite por saque e limite diário de saques)
+- **Exibir extrato** (histórico de movimentações)
+- **Criar usuário** (cliente do banco)
+- **Criar conta corrente** (vinculando-a a um usuário existente)
 - Controle de até **10 transações diárias** (depósitos + saques)
 - Registro de **data e hora** no extrato
 - Mensagens informativas após cada operação
@@ -31,7 +33,9 @@ Esse repositório contém uma versão do *Sistema Bancário* com:
 ### 🔧 O que eu modifiquei / adicionei
 Este projeto não é apenas uma cópia — é uma evolução do desafio da DIO. As principais melhorias implementadas foram:
 
-* **Estrutura modular em funções** (depositar, sacar, exibir_extrato);
+* **Estrutura modular em funções** (depositar, sacar, exibir_extrato, criar_usuario, criar_conta_corrente);
+* **Implementação das novas funções `criar_usuario` e `criar_conta_corrente`** com suas respectivas regras de negócio;
+* **Regras de passagem de argumentos** (`positional only` e `keyword only`) aplicadas nas funções de saque, depósito e extrato;
 * **Validação robusta de entrada** (tratamento com `try/except` para evitar que entradas inválidas quebrem o programa);
 * **Mensagens de confirmação** ao final de cada ação (ex.: ✅ Depósito de R$ 100.00 realizado com sucesso!);
 * **Controle de até 10 transações diárias**;
@@ -46,6 +50,7 @@ Este projeto foi inspirado no desafio **"Criando um Sistema Bancário com Python
 O código aqui apresentado foi adaptado e aprimorado por **Lucas Eduardo Barreto de Oliveira**, com melhorias em:
 
 * **Estrutura modular** (funções);
+* **Novas funcionalidades** de criação de usuários e contas;
 * **Mensagens claras de feedback** ao usuário;
 * **Validações adicionais** de entrada e limites;
 * **Novas funcionalidades** de limite diário de transações e registro de data/hora.
