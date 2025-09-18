@@ -6,7 +6,9 @@ Esse repositório contém uma versão do *Sistema Bancário* com:
 - código modular (funções);
 - validação de entrada (tratamento de `ValueError`);
 - mensagens claras após cada ação (confirmando depósito/saque/extrato);
-- limite por saque e limite diário de saques configuráveis.
+- limite por saque e limite diário de saques configuráveis;
+- limite de 10 transações diárias;
+- registro de data e hora em todas as transações.
 
 ---
 
@@ -14,6 +16,8 @@ Esse repositório contém uma versão do *Sistema Bancário* com:
 - Depositar valores
 - Sacar valores (com verificação de saldo, limite por saque e limite diário de saques)
 - Exibir extrato (histórico de movimentações)
+- Controle de até **10 transações diárias** (depósitos + saques)
+- Registro de **data e hora** no extrato
 - Mensagens informativas após cada operação
 
 ---
@@ -30,6 +34,8 @@ Este projeto não é apenas uma cópia — é uma evolução do desafio da DIO. 
 * **Estrutura modular em funções** (depositar, sacar, exibir_extrato);
 * **Validação robusta de entrada** (tratamento com `try/except` para evitar que entradas inválidas quebrem o programa);
 * **Mensagens de confirmação** ao final de cada ação (ex.: ✅ Depósito de R$ 100.00 realizado com sucesso!);
+* **Controle de até 10 transações diárias**;
+* **Registro de data e hora** em cada transação do extrato;
 * **Organização do código** para facilitar futuras melhorias (POO, múltiplas contas, persistência de dados).
 
 ---
@@ -41,5 +47,7 @@ O código aqui apresentado foi adaptado e aprimorado por **Lucas Eduardo Barreto
 
 * **Estrutura modular** (funções);
 * **Mensagens claras de feedback** ao usuário;
-* **Validações adicionais** de entrada e limites.
+* **Validações adicionais** de entrada e limites;
+* **Novas funcionalidades** de limite diário de transações e registro de data/hora.
+
 
