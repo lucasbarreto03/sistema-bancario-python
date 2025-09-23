@@ -34,6 +34,8 @@ Esse repositório contém uma versão do *Sistema Bancário* com:
 
 ## 📊 Diagrama UML
 
+📊 Diagrama UML
+
 ```mermaid
 classDiagram
     class Usuario {
@@ -63,8 +65,8 @@ classDiagram
     Usuario "1" --> "0..*" Conta : possui
     Conta "1" --> "0..*" Transacao : registra
 
+```
 
----
 
 ### 🔧 O que eu modifiquei / adicionei
 Este projeto não é apenas uma cópia — é uma evolução do desafio da DIO. As principais melhorias implementadas foram:
