@@ -3,7 +3,9 @@
 Projeto prático desenvolvido como exercício do Bootcamp da **DIO** (Suzano - Python Developer #2) e adaptado/aperfeiçoado por **Lucas Eduardo Barreto de Oliveira**.
 
 Esse repositório contém uma versão do *Sistema Bancário* com:
-- código modular (funções);
+- código orientado a objetos (POO);
+- classes modeladas para representar usuários, contas e transações;
+- métodos encapsulados para depósito, saque e extrato;
 - validação de entrada (tratamento de `ValueError`);
 - mensagens claras após cada ação (confirmando depósito/saque/extrato);
 - limite por saque e limite diário de saques configuráveis;
@@ -27,6 +29,40 @@ Esse repositório contém uma versão do *Sistema Bancário* com:
 ## 🛠️ Requisitos
 - Python 3.8+ (recomendado 3.10)
 - Não há dependências externas (somente stdlib).
+
+---
+
+## 📊 Diagrama UML
+
+```mermaid
+classDiagram
+    class Usuario {
+        - nome: str
+        - cpf: str
+        - data_nascimento: str
+        - endereco: str
+        + criar_conta(): Conta
+    }
+
+    class Conta {
+        - numero: int
+        - agencia: str
+        - saldo: float
+        - usuario: Usuario
+        + depositar(valor: float)
+        + sacar(valor: float)
+        + exibir_extrato()
+    }
+
+    class Transacao {
+        - valor: float
+        - data_hora: datetime
+        - tipo: str
+    }
+
+    Usuario "1" --> "0..*" Conta : possui
+    Conta "1" --> "0..*" Transacao : registra
+
 
 ---
 
